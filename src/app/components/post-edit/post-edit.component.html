@@ -6,10 +6,10 @@
 <h2>Edit Post</h2>
 <form *ngIf="post" (ngSubmit)="updatePost()">
   <div>
-    <input type="text" id="title" [(ngModel)]="post.title" name="title" required>
+    <input type="text" id="title" [(ngModel)]="post.title" name="title" required placeholder="TItle ...">
   </div>
   <div>
-    <textarea id="body" [(ngModel)]="post.body" name="body" required rows="10"></textarea>
+    <textarea id="body" [(ngModel)]="post.body" name="body" required rows="10" placeholder="Content here ..."></textarea>
   </div>
   <button type="submit">Update Post</button>
 </form>

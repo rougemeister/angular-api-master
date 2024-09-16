@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from '../../services/error-handler.service';
 import { Post } from '../../models/post.model';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-post-create',
@@ -24,7 +26,7 @@ export class PostCreateComponent {
 
   constructor(
     private errorHandler: ErrorHandlerService,
-    private router: Router
+    private router: Router, private location: Location
   ) {}
 
   createPost() {
@@ -52,5 +54,12 @@ export class PostCreateComponent {
 
     // Navigate to a hypothetical post detail page
     this.router.navigate(['/posts', newId]);
+
+
+ 
+  }
+
+  goBack() {
+    this.location.back(); 
   }
 }

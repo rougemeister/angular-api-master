@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { ErrorHandlerService } from '../../services/error-handler.service';
 import { Post } from '../../models/post.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-post-edit',
@@ -20,7 +21,8 @@ export class PostEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private apiService: ApiService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private location: Location 
   ) {}
 
   ngOnInit() {
@@ -51,6 +53,10 @@ export class PostEditComponent implements OnInit {
     } else {
       this.errorHandler.handleError('Cannot update: Post is null');
     }
+  }
+
+  goBack() {
+    this.location.back(); // Use location back to navigate to the previous page
   }
 }
 

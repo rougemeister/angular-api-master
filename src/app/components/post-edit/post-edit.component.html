@@ -2,6 +2,7 @@
 
 <div class="center">
 <div class="edit-post">
+<button (click)="goBack()" class="back-button">Back</button>
 <h2>Edit Post</h2>
 <form *ngIf="post" (ngSubmit)="updatePost()">
   <div>

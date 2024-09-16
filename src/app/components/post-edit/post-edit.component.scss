@@ -49,3 +49,22 @@ form {
         }
     }
 }
+
+
+.back-button {
+    padding: 10px 15px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background-color: #28A9F1;
+    color: #04131C;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+    font-size: 15px;
+    &:hover {
+        background-color: #1f7bb6;
+        color: black;
+    }
+}
+

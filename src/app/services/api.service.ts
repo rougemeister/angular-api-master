@@ -50,11 +50,12 @@ export class ApiService {
   }
 
   updatePost(post: Post): Observable<Post> {
-    return this.http.put<Post>(`${this.apiUrl}/posts/${post.id}`, post)
+    return this.http.patch<Post>(`${this.apiUrl}/posts/${post.id}`, post)
       .pipe(
         catchError(this.handleError)
       );
   }
+  
 
   deletePost(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/posts/${id}`)

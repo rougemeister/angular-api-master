@@ -1,7 +1,6 @@
-// src/app/components/post-detail/post-detail.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';  // Import Router
 import { ApiService } from '../../services/api.service';
 import { ErrorHandlerService } from '../../services/error-handler.service';
 import { Post } from '../../models/post.model';
@@ -21,7 +20,8 @@ export class PostDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private router: Router  
   ) {}
 
   ngOnInit() {
@@ -47,5 +47,19 @@ export class PostDetailComponent implements OnInit {
       error: (error) => this.errorHandler.handleError(error)
     });
   }
-}
 
+  deletePost() {
+    if (!this.post || typeof this.post.id !== 'number') {
+      this.errorHandler.handleError('No valid post to delete');
+      return;
+    }
+
+    this.apiService.deletePost(this.post.id).subscribe({
+      next: () => {
+        console.log('Post deleted successfully');
+        this.router.navigate(['/posts']); 
+      },
+      error: (error) => this.errorHandler.handleError(error)
+    });
+  }
+}

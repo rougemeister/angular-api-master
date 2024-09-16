@@ -28,6 +28,12 @@ display: inline-block;
 }
 }
 
+
+.links {
+    display: flex;
+    justify-content: space-between ;
+}
+
 @media screen and (min-width: 460px) {
     .center {
         display: flex;

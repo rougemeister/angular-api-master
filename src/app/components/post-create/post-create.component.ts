@@ -30,16 +30,14 @@ export class PostCreateComponent {
   ) {}
 
   createPost() {
-    // Generate a unique ID (you might want to use a more robust method in a real application)
     const newId = this.posts.length + 1;
     
-    // Create a new post object with the generated ID
     const createdPost: Post = {
       ...this.newPost,
       id: newId
     };
 
-    // Add the new post to the array
+ 
     this.posts.push(createdPost);
 
     console.log('Post created successfully', createdPost);

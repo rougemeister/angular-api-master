@@ -1,9 +1,7 @@
-// src/app/components/post-create/post-create.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from '../../services/api.service';
 import { ErrorHandlerService } from '../../services/error-handler.service';
 import { Post } from '../../models/post.model';
 
@@ -21,20 +19,38 @@ export class PostCreateComponent {
     userId: 1 // You might want to get this from a user service or authentication
   };
 
+  // Array to store posts
+  posts: Post[] = [];
+
   constructor(
-    private apiService: ApiService,
     private errorHandler: ErrorHandlerService,
     private router: Router
   ) {}
 
   createPost() {
-    this.apiService.createPost(this.newPost).subscribe({
-      next: (createdPost) => {
-        console.log('Post created successfully', createdPost);
-        this.router.navigate(['/posts', createdPost.id]);
-      },
-      error: (error) => this.errorHandler.handleError(error)
-    });
+    // Generate a unique ID (you might want to use a more robust method in a real application)
+    const newId = this.posts.length + 1;
+    
+    // Create a new post object with the generated ID
+    const createdPost: Post = {
+      ...this.newPost,
+      id: newId
+    };
+
+    // Add the new post to the array
+    this.posts.push(createdPost);
+
+    console.log('Post created successfully', createdPost);
+    console.log('Updated posts array', this.posts);
+
+    // Reset the form
+    this.newPost = {
+      title: '',
+      body: '',
+      userId: 1
+    };
+
+    // Navigate to a hypothetical post detail page
+    this.router.navigate(['/posts', newId]);
   }
 }
-

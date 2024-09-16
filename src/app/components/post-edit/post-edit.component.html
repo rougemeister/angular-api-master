@@ -1,1 +1,19 @@
-<p>post-edit works!</p>
+
+
+<div class="center">
+<div class="edit-post">
+<h2>Edit Post</h2>
+<form *ngIf="post" (ngSubmit)="updatePost()">
+  <div>
+    <input type="text" id="title" [(ngModel)]="post.title" name="title" required>
+  </div>
+  <div>
+    <textarea id="body" [(ngModel)]="post.body" name="body" required rows="10"></textarea>
+  </div>
+  <button type="submit">Update Post</button>
+</form>
+<div *ngIf="!post">
+  <p>Loading post...</p>
+</div>
+</div>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { ErrorHandlerService } from '../../services/error-handler.service';
@@ -7,11 +9,11 @@ import { Post } from '../../models/post.model';
 @Component({
   selector: 'app-post-edit',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './post-edit.component.html',
-  styleUrl: './post-edit.component.scss'
+  styleUrls: ['./post-edit.component.scss']
 })
-export class PostEditComponent {
+export class PostEditComponent implements OnInit {
   post: Post | null = null;
 
   constructor(
@@ -25,6 +27,8 @@ export class PostEditComponent {
     const postId = this.route.snapshot.paramMap.get('id');
     if (postId) {
       this.loadPost(+postId);
+    } else {
+      this.errorHandler.handleError('Post ID not found in route parameters');
     }
   }
 
@@ -38,10 +42,16 @@ export class PostEditComponent {
   updatePost() {
     if (this.post) {
       this.apiService.updatePost(this.post).subscribe({
-        next: () => this.router.navigate(['/posts', this.post?.id]),
+        next: () => {
+          console.log('Post updated successfully');
+          this.router.navigate(['/posts', this.post?.id]);
+        },
         error: (error) => this.errorHandler.handleError(error)
       });
+    } else {
+      this.errorHandler.handleError('Cannot update: Post is null');
     }
   }
-
 }
+
+

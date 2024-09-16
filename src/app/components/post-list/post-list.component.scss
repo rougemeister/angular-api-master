@@ -1,0 +1,57 @@
+.post-list {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    align-items: center;
+    h2 {
+        margin: 0 ;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 10px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        
+
+        a {
+            text-decoration: none;
+            color: #1B1924;
+            &:active {
+                color: #1B1924;
+            }
+          
+        }
+      
+        }
+
+        li {
+            padding: 15px;
+            background-color: aliceblue;
+            border-radius: 8px;
+        }
+        .create-post {
+            text-decoration: none;
+                color: white;
+                font-weight: 600;
+                font-size: 15px;
+                margin-bottom: 2rem;
+                align-self: flex-end;
+                background-color: #28A9F1;
+                padding: 10px 15px;
+                border-radius: 8px;
+            
+        }
+}
+   
+
+
+@media screen and (min-width: 460px) {
+    .post-list {
+        width: 600px;
+    }
+    
+}

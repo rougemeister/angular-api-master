@@ -26,6 +26,7 @@ export class PostListComponent implements OnInit {
 
   ngOnInit() {
     this.loadPosts();
+    console.log(this.loadPosts)
   }
 
   loadPosts() {

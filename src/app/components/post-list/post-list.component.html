@@ -1,8 +1,14 @@
-<h2>Posts</h2>
-<ul>
-  <li *ngFor="let post of posts">
-    <a [routerLink]="['/posts', post.id]">{{ post.title }}</a>
-  </li>
+<h1>Angular Api Master</h1>
+<div class="post-list">
+  <a class="create-post" routerLink="/posts/create">Create New Post</a>
+  <h2>- Posts -</h2>
+<ul class="posts">    
+  @for(post of posts; track post){
+    <a [routerLink]="['/posts', post.id]"><li>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.body }}</p>
+    </li></a>
+  }
 </ul>
 <app-pagination 
   [currentPage]="currentPage"
@@ -10,4 +16,4 @@
   [totalItems]="totalPosts"
   (pageChange)="onPageChange($event)">
 </app-pagination>
-<a routerLink="/posts/create">Create New Post</a>
+</div>
